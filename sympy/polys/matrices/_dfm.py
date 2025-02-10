@@ -785,6 +785,29 @@ class DFM:
 
         return self._new(sol, sol_shape, self.domain)
 
+    def fflu(self):
+        """
+        Fraction-free PLDU decomposition for DFM.
+
+        This method adapts to rank-deficient matrices by removing rows and columns
+        corresponding to zero pivots in the upper triangular matrix U.
+
+        Returns
+        =======
+
+        (P, L, D, U)
+            P is the permutation matrix as a DFM.
+            L is the lower triangular matrix as a DFM.
+            D is the diagonal matrix as a DFM.
+            U is the upper triangular matrix as a DFM.
+        """
+        ddm_p, ddm_l, ddm_d, ddm_u = self.to_ddm().fflu()
+        P = ddm_p.to_dfm()
+        L = ddm_l.to_dfm()
+        D = ddm_d.to_dfm()
+        U = ddm_u.to_dfm()
+        return P, L, D, U
+
     def nullspace(self):
         """Return a basis for the nullspace of the matrix."""
         # Code to compute nullspace using flint:
