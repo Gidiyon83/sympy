@@ -37,7 +37,7 @@ jobs:
       NODE_VERSION: 20
     steps:
       - name: Checkout SymPy
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
@@ -54,7 +54,7 @@ jobs:
         run: pip install pyodide-build
 
       - name: Set up Node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -151,7 +151,7 @@ jobs:
     if: always()
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v5
         with:
           path: all_test_durations
           merge-multiple: true
